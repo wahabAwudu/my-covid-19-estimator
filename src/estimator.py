@@ -21,8 +21,7 @@ def impactEstimator(data):
   hospitalBedsByRequestedTime = (0.35 * data['totalHospitalBeds']) / severeCasesByRequestedTime
   casesForICUByRequestedTime = 0.05 * infectionsByRequestedTime
   casesForVentilatorsByRequestedTime = 0.02 * infectionsByRequestedTime
-  dollarsInFlight = (infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'])\
-    * data['region']['avgDailyIncomeInUSD'] * getDurationDays(data)
+  dollarsInFlight = (infectionsByRequestedTime * data['region']['avgDailyIncomePopulation']) * data['region']['avgDailyIncomeInUSD'] * getDurationDays(data)
 
   return {
     'currentlyInfected': currentlyInfected,
@@ -45,8 +44,7 @@ def severeImactEstimator(data):
   hospitalBedsByRequestedTime = (0.35 * data['totalHospitalBeds']) / severeCasesByRequestedTime
   casesForICUByRequestedTime = 0.05 * infectionsByRequestedTime
   casesForVentilatorsByRequestedTime = 0.02 * infectionsByRequestedTime
-  dollarsInFlight = (infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'])\
-    * data['region']['avgDailyIncomeInUSD'] * getDurationDays(data)
+  dollarsInFlight = (infectionsByRequestedTime * data['region']['avgDailyIncomePopulation']) * data['region']['avgDailyIncomeInUSD'] * getDurationDays(data)
 
   return {
     'currentlyInfected': currentlyInfected,
