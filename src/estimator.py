@@ -3,7 +3,7 @@ import math
 
 def getDurationDays(data):
   '''convert weeks and months to days'''
-  
+
   if data['periodType'] == 'weeks':
     return data['timeToElapse'] * 7
   elif data['periodType'] == 'months':
@@ -18,11 +18,11 @@ def impactEstimator(data):
   exp = getDurationDays(data) / 3
   infectionsByRequestedTime = currentlyInfected * math.ceil((2**exp))
   severeCasesByRequestedTime = 0.15 * infectionsByRequestedTime
-  hospitalBedsByRequestedTime = 0.35 * data['totalHospitalBeds']
+  hospitalBedsByRequestedTime = (0.35 * data['totalHospitalBeds']) / severeCasesByRequestedTime
   casesForICUByRequestedTime = 0.05 * infectionsByRequestedTime
   casesForVentilatorsByRequestedTime = 0.02 * infectionsByRequestedTime
   dollarsInFlight = (infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'])\
-    * data['avgDailyIncomeInUSD'] * getDurationDays(data)
+    * data['region']['avgDailyIncomeInUSD'] * getDurationDays(data)
 
   return {
     'currentlyInfected': currentlyInfected,
@@ -42,11 +42,11 @@ def severeImactEstimator(data):
   exp = getDurationDays(data) / 3
   infectionsByRequestedTime = currentlyInfected * (2**exp)
   severeCasesByRequestedTime = 0.15 * infectionsByRequestedTime
-  hospitalBedsByRequestedTime = 0.35 * data['totalHospitalBeds']
+  hospitalBedsByRequestedTime = (0.35 * data['totalHospitalBeds']) / severeCasesByRequestedTime
   casesForICUByRequestedTime = 0.05 * infectionsByRequestedTime
   casesForVentilatorsByRequestedTime = 0.02 * infectionsByRequestedTime
   dollarsInFlight = (infectionsByRequestedTime * data['region']['avgDailyIncomePopulation'])\
-    * data['avgDailyIncomeInUSD'] * getDurationDays(data)
+    * data['region']['avgDailyIncomeInUSD'] * getDurationDays(data)
 
   return {
     'currentlyInfected': currentlyInfected,
