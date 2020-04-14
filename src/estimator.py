@@ -1,4 +1,4 @@
-import math
+from math import ceil
 
 
 def getDurationDays(data):
@@ -16,7 +16,7 @@ def impactEstimator(data):
 
   currentlyInfected = data['reportedCases'] * 10
   exp = getDurationDays(data) / 3
-  infectionsByRequestedTime = currentlyInfected * math.ceil((2**exp))
+  infectionsByRequestedTime = currentlyInfected * ceil((2**exp))
   severeCasesByRequestedTime = 0.15 * infectionsByRequestedTime
   hospitalBedsByRequestedTime = (0.35 * data['totalHospitalBeds']) / severeCasesByRequestedTime
   casesForICUByRequestedTime = 0.05 * infectionsByRequestedTime
@@ -24,13 +24,13 @@ def impactEstimator(data):
   dollarsInFlight = (infectionsByRequestedTime * data['region']['avgDailyIncomePopulation']) * data['region']['avgDailyIncomeInUSD'] * getDurationDays(data)
 
   return {
-    'currentlyInfected': currentlyInfected,
-    'infectionsByRequestedTime': infectionsByRequestedTime,
-    'severeCasesByRequestedTime': severeCasesByRequestedTime,
-    'hospitalBedsByRequestedTime': hospitalBedsByRequestedTime,
-    'casesForICUByRequestedTime': casesForICUByRequestedTime,
-    'casesForVentilatorsByRequestedTime': casesForVentilatorsByRequestedTime,
-    'dollarsInFlight': dollarsInFlight
+    'currentlyInfected': ceil(currentlyInfected),
+    'infectionsByRequestedTime': ceil(infectionsByRequestedTime),
+    'severeCasesByRequestedTime': ceil(severeCasesByRequestedTime),
+    'hospitalBedsByRequestedTime': ceil(hospitalBedsByRequestedTime),
+    'casesForICUByRequestedTime': ceil(casesForICUByRequestedTime),
+    'casesForVentilatorsByRequestedTime': ceil(casesForVentilatorsByRequestedTime),
+    'dollarsInFlight': ceil(dollarsInFlight)
   }
 
 
@@ -47,13 +47,13 @@ def severeImactEstimator(data):
   dollarsInFlight = (infectionsByRequestedTime * data['region']['avgDailyIncomePopulation']) * data['region']['avgDailyIncomeInUSD'] * getDurationDays(data)
 
   return {
-    'currentlyInfected': currentlyInfected,
-    'infectionsByRequestedTime': infectionsByRequestedTime,
-    'severeCasesByRequestedTime': severeCasesByRequestedTime,
-    'hospitalBedsByRequestedTime': hospitalBedsByRequestedTime,
-    'casesForICUByRequestedTime': casesForICUByRequestedTime,
-    'casesForVentilatorsByRequestedTime': casesForVentilatorsByRequestedTime,
-    'dollarsInFlight': dollarsInFlight
+    'currentlyInfected': ceil(currentlyInfected),
+    'infectionsByRequestedTime': ceil(infectionsByRequestedTime),
+    'severeCasesByRequestedTime': ceil(severeCasesByRequestedTime),
+    'hospitalBedsByRequestedTime': ceil(hospitalBedsByRequestedTime),
+    'casesForICUByRequestedTime': ceil(casesForICUByRequestedTime),
+    'casesForVentilatorsByRequestedTime': ceil(casesForVentilatorsByRequestedTime),
+    'dollarsInFlight': ceil(dollarsInFlight)
   }
 
 
